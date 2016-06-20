@@ -1,5 +1,5 @@
 {
-  "name": "silverstripe/multiusereditingalert",
+  "name": "silverstripe/multiuser-editing-alert",
   "type": "silverstripe-module",
   "description": "A module that indicates when people are editing the same page in the CMS",
   "license": "BSD-3-Clause",
