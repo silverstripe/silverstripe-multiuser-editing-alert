@@ -1,5 +1,5 @@
 # Multi-User Editing Alert
-
+Alerts users in the SilverStripe CMS when multiple people are editing the same page.
 
 ### Maintainer Contact
 Julian Seidenberg
@@ -9,6 +9,8 @@ Julian Seidenberg
 SilverStripe 3.1 or newer
 
 ## Installation
+Run: `composer require silverstripe/multiuser-editing-alert`
+
 The module is automatically enabled after flush=all.
 
 ## Usage
