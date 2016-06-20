@@ -1,0 +1,14 @@
+---
+Name: multiuser_editing
+After: framework/routes#coreroutes
+---
+Director:
+  rules:
+    'admin/editing//$Action/$ID': 'MultiUserEditingController'
+LeftAndMain:
+  extra_requirements_javascript:
+    - 'multiuser-editing/javascript/multiUserEditing.js'
+MultiUserEditingController:
+  userTimeoutInSeconds: 70
+  updateIntervalSingleUser: 24
+  updateIntervalMultiUser: 3
