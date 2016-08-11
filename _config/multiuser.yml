@@ -8,6 +8,8 @@ Director:
 LeftAndMain:
   extra_requirements_javascript:
     - 'multiuser-editing/javascript/multiUserEditing.js'
+  extra_requirements_css:
+    - 'multiuser-editing/css/multiuserediting.min.css'
 MultiUserEditingController:
   userTimeoutInSeconds: 70
   updateIntervalSingleUser: 24

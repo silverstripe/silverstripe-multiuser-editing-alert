@@ -1,0 +1,33 @@
+/* list of all users separated by br instead of newline */
+.multi-user-list {
+	margin-left: 30px;
+	list-style: inherit;
+}
+
+	.multi-user-list > li {}
+
+.multi-user-label {
+	position: relative;
+	float: right;
+}
+
+	.multi-user-label > img {}
+
+
+/* append a highly visible message to the current page, if multiple editors are 
+editing the same page */
+.multi-user-editing-alert-message {}
+
+.multi-user-editing-alert-message.message {
+	margin-bottom: -16px;
+}
+	
+	/* Division wrapper for images */
+	.multi-user-image-wrap {
+		float: left;
+	}
+		/* Created selector for child img tag of parent devision wrapper */
+		.multi-user-image-wrap > img {}
+
+	/* Styling of common label text */
+	.multi-user-editing-label {}
