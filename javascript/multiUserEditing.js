@@ -2,7 +2,7 @@ jQuery.entwine("multiUserEditing", function($) {
 	var normalImage = 'bluedot.svg';
 	var alertImage = 'reddot.svg';
 	var updateTimer = 0;
-	
+
 	$('.cms-edit-form').entwine({
 		RecordID: null,
 		RecordClass: null,
@@ -27,7 +27,7 @@ jQuery.entwine("multiUserEditing", function($) {
 				self.setCurrentPage();
 			}, updateInterval);
 		},
-		
+
 		setCurrentPage: function(){
 			var self = this;
 			
@@ -41,7 +41,7 @@ jQuery.entwine("multiUserEditing", function($) {
 				});
 			}
 		},
-		
+
 		updateUserLabels: function(data, currentPageID){
 			//remove all existing labels
 			var multipleEditors = false;
@@ -72,7 +72,7 @@ jQuery.entwine("multiUserEditing", function($) {
 				}
 
 				var users = '';	//list of all users editing the current page
-				var usersBR = '<ul style="margin-left:30px; list-style:inherit;">';	//list of all users separated by br instead of newline
+				var usersBR = '<ul class="multi-user-list">';	//list of all users separated by br instead of newline
 				$.each(itemsArray, function (index, item) {
 					if (index !== 0) {
 						users += "\n";	//separate users by new line
@@ -84,17 +84,17 @@ jQuery.entwine("multiUserEditing", function($) {
 				});
 				usersBR += "</ul>";
 
-				var dotHTML = '<div style="position:relative; float:right;" class="user-label" title="' + users +
-					'"><img height="10px" width="10px" ' + 'src="multiuser-editing/images/' + dot + '"/></div>';
+				var dotHTML = '<div class="user-label multi-user-label" title="' + users +
+					'"><img height="10" width="10" ' + 'src="multiuser-editing/images/' + dot + '"></div>';
 					treeItem.find('.jstree-icon').first().after(dotHTML);
 
 				//append a highly visible message to the current page, if multiple editors are editing the same page
 				if (pageID === currentPageID && dot === alertImage) {
 
-					var messageHTML = '<div class="multi-user-editing-alert-message message error" style="margin-bottom:-16px;">' +
-						'<div style="float:left;" title="' + users + '">' +
-						'<img height="10px" width="10px" ' + 'src="multiuser-editing/images/' + dot + '"/>&nbsp; </div>' +
-						'<div><strong>Warning</strong>: the following users are currently editing this page:<br/>' +
+					var messageHTML = '<div class="multi-user-editing-alert-message message error">' +
+						'<div class="multi-user-image-wrap" title="' + users + '">' +
+						'<img height="10" width="10" ' + 'src="multiuser-editing/images/' + dot + '">&nbsp; </div>' +
+						'<div class="multi-user-editing-label"><strong>Warning</strong>: the following users are currently editing this page:<br/>' +
 						usersBR + '</div></div>';
 					cmsMain.prepend(messageHTML);
 				}
@@ -102,11 +102,9 @@ jQuery.entwine("multiUserEditing", function($) {
 
 			return multipleEditors;
 		},
-		
+
 		onunmatch: function(){
 			clearTimeout(updateTimer);
 		}
 	});
 });
-
-
