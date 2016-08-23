@@ -32,4 +32,5 @@ Extra bonus: the red and blue dots are SVG files, and therefore tiny to download
 [See a video demo here](https://youtu.be/rNhudazR2UA)
 
 ## Attribution ##
-Icons bluedot.svg and reddot.svg by [Benji Park](http://www.openclipart.org/). All rights reserved. Licensed under a [Creative Commons Zero 1.0 License](https://creativecommons.org/publicdomain/zero/1.0/).
+* Icons bluedot.svg and reddot.svg by [Benji Park](http://www.openclipart.org/). All rights reserved. Licensed under a [Creative Commons Zero 1.0 License](https://creativecommons.org/publicdomain/zero/1.0/).
+* Icon warning.svg from [IcoMoon App](https://icomoon.io/app/#/select). All rights reserved. Licensed under a [GPL / CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
