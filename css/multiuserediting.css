@@ -1,33 +1,141 @@
-/* list of all users separated by br instead of newline */
+/* list of all users separated by <br> instead of newline */
 .multi-user-list {
-	margin-left: 30px;
 	list-style: inherit;
+	margin-left: 25px;
+	margin-top: 10px;
 }
 
-	.multi-user-list > li {}
-
-.multi-user-label {
-	position: relative;
+/* Multiuser CMS tree icon placement */
+.multi-user-icon {
 	float: right;
+	position: relative;
+	height: 22px; /* Set height for proper icon placement of child element (img) */
 }
 
-	.multi-user-label > img {}
-
-
-/* append a highly visible message to the current page, if multiple editors are 
-editing the same page */
-.multi-user-editing-alert-message {}
-
-.multi-user-editing-alert-message.message {
-	margin-bottom: -16px;
-}
-	
-	/* Division wrapper for images */
-	.multi-user-image-wrap {
-		float: left;
+	/* Center verticaly icon */
+	.multi-user-icon > img {
+		position: absolute;
+		top: 50%;
+		-webkit-transform: translate(0px,-50%);
+		        transform: translate(0px,-50%);
 	}
-		/* Created selector for child img tag of parent devision wrapper */
-		.multi-user-image-wrap > img {}
 
-	/* Styling of common label text */
-	.multi-user-editing-label {}
+
+/* Float a CMS header title to left for proper placement 
+of '.multi-user-message-wrap' */
+.cms-content-header h2 {
+	display: inline-block;
+	margin: 0;
+}
+
+/* Division wrapper for multiediting icon,
+placement: on right side of ".breadcrumbs-wrapper" */
+.multi-user-message-wrap {
+	float: right;
+    height: 40px; /* Match height of CMS header for proper message placement */
+    margin-left: 15px;
+    margin-right: 0;
+    padding-top: 6px; /* Center icon in vertical of CMS header */
+    position: relative;
+    width: 40px; /* Equal width to height for better  */
+}
+
+	/* Hide message box by default */
+	.multi-user-editing-alert-message {
+		position: absolute;
+		top: 100%;
+		left: 0;
+		width: 340px;
+		margin: 0;
+		opacity: 0;
+		-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+		-webkit-transition: opacity 0.3s ease-in-out 0s;
+		transition: opacity 0.3s ease-in-out 0s;
+	}
+
+	/* Show message box on hover/focus of icon */
+	.multi-user-message-wrap:hover .multi-user-editing-alert-message,
+	.multi-user-message-wrap:focus .multi-user-editing-alert-message {
+		opacity: 1;
+		-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+	}
+
+		/* Add a top caret pointer for message box */
+		.multi-user-editing-top-caret {
+			position: absolute;
+			content: "";
+			left: 4px;
+			top: -10px;
+			width: 0;
+			height: 0;
+			border-style: solid;
+			border-width: 0 7px 9px 7px;
+			border-color: transparent transparent #e68288 transparent;
+		}
+
+		.multi-user-editing-top-caret:before {
+			border-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) #fae8e9;
+			border-style: solid;
+			border-width: 0 6px 8px;
+			content: "";
+			height: 0;
+			left: -6px;
+			position: absolute;
+			top: 2px;
+			width: 0;
+		}
+
+			/* Styling of common box text */
+			.multi-user-editing-label {
+				font-size: 14px;
+				line-height: 1.5;
+			}
+
+/* OPTIONAL shake animation for CMS header icon,
+Usage: add a class="animated shake" on <img> on line 99 of multiUserEditing.js;
+Atribution: https://github.com/daneden/animate.css */
+.animated {
+	-webkit-animation-duration: 1.2s;
+	animation-duration: 1.2s;
+	-webkit-animation-fill-mode: both;
+	animation-fill-mode: both;
+}
+
+@-webkit-keyframes shake {
+	from, to {
+		-webkit-transform: translate3d(0, 0, 0);
+		transform: translate3d(0, 0, 0);
+	}
+
+	10%, 30%, 50%, 70%, 90% {
+		-webkit-transform: translate3d(-5px, 0, 0);
+		transform: translate3d(-5px, 0, 0);
+	}
+
+	20%, 40%, 60%, 80% {
+		-webkit-transform: translate3d(5px, 0, 0);
+		transform: translate3d(5px, 0, 0);
+	}
+}
+
+@keyframes shake {
+	from, to {
+		-webkit-transform: translate3d(0, 0, 0);
+		transform: translate3d(0, 0, 0);
+	}
+
+	10%, 30%, 50%, 70%, 90% {
+		-webkit-transform: translate3d(-5px, 0, 0);
+		transform: translate3d(-5px, 0, 0);
+	}
+
+	20%, 40%, 60%, 80% {
+		-webkit-transform: translate3d(5px, 0, 0);
+		transform: translate3d(5px, 0, 0);
+	}
+}
+
+.shake {
+	-webkit-animation-name: shake;
+	animation-name: shake;
+}
