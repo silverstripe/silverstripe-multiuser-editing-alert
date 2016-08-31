@@ -1,6 +1,8 @@
 jQuery.entwine("multiUserEditing", function($) {
-	var normalImage = 'bluedot.svg';
-	var alertImage = 'reddot.svg';
+	var normalImage = 'round-blue.svg';
+	var alertImage = 'round-red.svg';
+	//added third icon for use on CMS head
+	var alertImageHead = 'warning.svg';
 	var updateTimer = 0;
 
 	$('.cms-edit-form').entwine({
@@ -46,9 +48,11 @@ jQuery.entwine("multiUserEditing", function($) {
 			//remove all existing labels
 			var multipleEditors = false;
 			var cmsTree = $('.cms-tree');
-			var cmsMain = $('#Root');
+			//if you wish to place an icon left from CMS title use $('.cms-content-header-nav')
+			var cmsHead = $('.breadcrumbs-wrapper');
 			cmsTree.find('.user-label').remove();
-			cmsMain.find('.multi-user-editing-alert-message').remove();
+			cmsHead.find('.multi-user-message-wrap').remove();
+			cmsHead.find('.multi-user-editing-alert-message').remove();
 			
 			//reorganise data into an array for each pageID;
 			var organisedData = {};
@@ -67,8 +71,10 @@ jQuery.entwine("multiUserEditing", function($) {
 				var treeItem = cmsTree.find('li[data-id=' + pageID + ']');
 
 				var dot = normalImage;
+				var dotHead = normalImage;
 				if (itemsArray.length > 1) {	//more than one editors on a single page, use a red dot to indicate
 					dot = alertImage;
+					dotHead = alertImageHead;
 				}
 
 				var users = '';	//list of all users editing the current page
@@ -84,19 +90,20 @@ jQuery.entwine("multiUserEditing", function($) {
 				});
 				usersBR += "</ul>";
 
-				var dotHTML = '<div class="user-label multi-user-label" title="' + users +
-					'"><img height="10" width="10" ' + 'src="multiuser-editing/images/' + dot + '"></div>';
+				var dotHTML = '<div class="user-label multi-user-icon" title="' + users +
+					'"><img height="5" width="5" ' + 'src="multiuser-editing/images/' + dot + '"></div>';
 					treeItem.find('.jstree-icon').first().after(dotHTML);
 
 				//append a highly visible message to the current page, if multiple editors are editing the same page
-				if (pageID === currentPageID && dot === alertImage) {
+				if (pageID === currentPageID && dotHead === alertImageHead) {
 
-					var messageHTML = '<div class="multi-user-editing-alert-message message error">' +
-						'<div class="multi-user-image-wrap" title="' + users + '">' +
-						'<img height="10" width="10" ' + 'src="multiuser-editing/images/' + dot + '">&nbsp; </div>' +
+					var messageHTML = '<div class="multi-user-message-wrap">' +
+						'<img height="24" width="24" ' + 'src="multiuser-editing/images/' + dotHead + '">' +
+						'<div class="multi-user-editing-alert-message message error">' +
+						'<span class="multi-user-editing-top-caret"></span>' +
 						'<div class="multi-user-editing-label"><strong>Warning</strong>: the following users are currently editing this page:<br/>' +
-						usersBR + '</div></div>';
-					cmsMain.prepend(messageHTML);
+						usersBR + '</div></div></div>';
+					cmsHead.prepend(messageHTML);
 				}
 			});
 
