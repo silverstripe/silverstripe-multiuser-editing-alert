@@ -44,7 +44,7 @@ placement: on right side of ".breadcrumbs-wrapper" */
 	.multi-user-editing-alert-message {
 		position: absolute;
 		top: 100%;
-		left: 0;
+		left: -9999px;
 		width: 340px;
 		margin: 0;
 		opacity: 0;
@@ -56,6 +56,7 @@ placement: on right side of ".breadcrumbs-wrapper" */
 	/* Show message box on hover/focus of icon */
 	.multi-user-message-wrap:hover .multi-user-editing-alert-message,
 	.multi-user-message-wrap:focus .multi-user-editing-alert-message {
+		left: 0;		
 		opacity: 1;
 		-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
 	}
