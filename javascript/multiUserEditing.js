@@ -9,7 +9,7 @@ jQuery.entwine("multiUserEditing", function($) {
 		RecordID: null,
 		RecordClass: null,
 		LockURL: null,
-		
+
 		onmatch: function() {
 			this.setCurrentPage();	//start the update timer for the first time
 		},
@@ -17,13 +17,13 @@ jQuery.entwine("multiUserEditing", function($) {
 		setUpdateTimeout: function(data){
 			var self = this;
 			clearTimeout(updateTimer);	//clear any previous timers
-			
+
 			//set update interval approximately based on how many people are currently online
 			var updateInterval = data.update.updateIntervalMultiUser * 1000;
 			if (Object.keys(data).length <= 2) {
 				updateInterval = data.update.updateIntervalSingleUser * 1000;	//time in ms
 			}
-			
+
 			//set the next update timer
 			updateTimer = setTimeout(function(){
 				self.setCurrentPage();
@@ -32,11 +32,11 @@ jQuery.entwine("multiUserEditing", function($) {
 
 		setCurrentPage: function(){
 			var self = this;
-			
+
 			//check that we are in the pages section of the site
 			var pageID = this.find('#Form_EditForm_ID').val();
 			if (typeof(pageID) !== 'undefined' && pageID !== false && pageID !== 0 && pageID !== '0') {
-				
+
 				$.getJSON('admin/editing/set/' + pageID, function (data) {
 					self.updateUserLabels(data, pageID);
 					self.setUpdateTimeout(data);	//update every x seconds
@@ -51,9 +51,8 @@ jQuery.entwine("multiUserEditing", function($) {
 			//if you wish to place an icon left from CMS title use $('.cms-content-header-nav')
 			var cmsHead = $('.breadcrumbs-wrapper');
 			cmsTree.find('.user-label').remove();
-			cmsHead.find('.multi-user-message-wrap').remove();
-			cmsHead.find('.multi-user-editing-alert-message').remove();
-			
+			cmsHead.find('.multi-user-message-wrap').hide();
+
 			//reorganise data into an array for each pageID;
 			var organisedData = {};
 			$.each(data, function (index, item) {
@@ -97,13 +96,16 @@ jQuery.entwine("multiUserEditing", function($) {
 				//append a highly visible message to the current page, if multiple editors are editing the same page
 				if (pageID === currentPageID && dotHead === alertImageHead) {
 
-					var messageHTML = '<div class="multi-user-message-wrap">' +
-						'<img height="24" width="24" ' + 'src="multiuser-editing/images/' + dotHead + '">' +
-						'<div class="multi-user-editing-alert-message message error">' +
-						'<span class="multi-user-editing-top-caret"></span>' +
-						'<div class="multi-user-editing-label"><strong>Warning</strong>: the following users are currently editing this page:<br/>' +
-						usersBR + '</div></div></div>';
-					cmsHead.prepend(messageHTML);
+					if (cmsHead.find('.multi-user-message-wrap').length) {
+						cmsHead.find('.multi-user-message-wrap').show();
+					} else {
+						cmsHead.prepend('<div class="multi-user-message-wrap">' +
+							'<img height="24" width="24" ' + 'src="multiuser-editing/images/' + dotHead + '">' +
+							'<div class="multi-user-editing-alert-message message error">' +
+							'<span class="multi-user-editing-top-caret"></span>' +
+							'<div class="multi-user-editing-label"></div></div></div>');
+					}
+					cmsHead.find('.multi-user-message-wrap .multi-user-editing-label').html('<strong>Warning</strong>: the following users are currently editing this page:<br/>' + usersBR);
 				}
 			});
 
