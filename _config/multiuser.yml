@@ -2,15 +2,20 @@
 Name: multiuser_editing
 After: framework/routes#coreroutes
 ---
-Director:
+SilverStripe\Control\Director:
   rules:
-    'admin/editing//$Action/$ID': 'MultiUserEditingController'
-LeftAndMain:
+    'admin/editing//$Action/$ID': 'MultiUserEditing\MultiUserEditingController'
+SilverStripe\Admin\LeftAndMain:
   extra_requirements_javascript:
-    - 'multiuser-editing/javascript/multiUserEditing.js'
+    - 'multiuser-editing/js/multiUserEditing.js'
   extra_requirements_css:
     - 'multiuser-editing/css/multiuserediting.min.css'
-MultiUserEditingController:
+MultiUserEditing\MultiUserEditingController:
   userTimeoutInSeconds: 70
   updateIntervalSingleUser: 24
   updateIntervalMultiUser: 3
+SilverStripe\Core\Injector\Injector:
+  Psr\SimpleCache\CacheInterface.multiuserediting:
+    factory: SilverStripe\Core\Cache\CacheFactory
+    constructor:
+      namespace: 'multiuserediting'
