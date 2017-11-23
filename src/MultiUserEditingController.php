@@ -1,6 +1,6 @@
 <?php
 
-namespace MultiUserEditing;
+namespace Silverstripe\MultiUserEditing;
 
 use SilverStripe\Control\Controller;
 use SilverStripe\Core\Config\Config;
@@ -15,7 +15,7 @@ class MultiUserEditingController extends Controller implements Flushable
         'set',
         'get'
     ];
-
+    
     private $user = null; //current user DataObject
     protected $usersEditing = null; //array of all users editing
     protected $editingCache = null; //CacheInterface to store all concurrently editing users

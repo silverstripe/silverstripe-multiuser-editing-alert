@@ -18,13 +18,13 @@
     width: 22px;
 }
 
-/* Center verticaly icon */
-.multi-user-icon > img {
-    position: absolute;
-    top: 50%;
-    -webkit-transform: translate(0px,-50%);
-    transform: translate(0px,-50%);
-}
+    /* Center verticaly icon */
+    .multi-user-icon > img {
+        position: absolute;
+        top: 50%;
+        -webkit-transform: translate(0px,-50%);
+        transform: translate(0px,-50%);
+    }
 
 
 /* Float a CMS header title to left for proper placement
@@ -47,69 +47,69 @@ placement: on right side of ".breadcrumbs-wrapper" */
     z-index: 3;
 }
 
-/* Hide message box by default */
-.multi-user-editing-alert-message {
-    position: absolute;
-    right: -9999px;
-    top: 100%;
-    width: 270px;
-    margin: 0;
-    opacity: 0;
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
-    -webkit-transition: opacity 0.3s ease-in-out 0s, left 0 0.3s;
-    transition: opacity 0.3s ease-in-out 0s, left 0 0.3s;
-}
-
-@media (min-width: 768px) {
+    /* Hide message box by default */
     .multi-user-editing-alert-message {
-        width: 340px;
+        position: absolute;
+        right: -9999px;
+        top: 100%;
+        width: 270px;
+        margin: 0;
+        opacity: 0;
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+        -webkit-transition: opacity 0.3s ease-in-out 0s, left 0 0.3s;
+        transition: opacity 0.3s ease-in-out 0s, left 0 0.3s;
     }
-}
 
-/* Show message box on hover/focus of icon */
-.multi-user-message-wrap:hover .multi-user-editing-alert-message,
-.multi-user-message-wrap:focus .multi-user-editing-alert-message {
-    opacity: 1;
-    right: 0;
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
-    -webkit-transition: opacity 0.3s ease-in-out 0s;
-    transition: opacity 0.3s ease-in-out 0s;
-}
+    @media (min-width: 768px) {
+        .multi-user-editing-alert-message {
+            width: 340px;
+        }
+    }
 
-/* Add a top caret pointer for message box */
-.multi-user-editing-top-caret {
-    position: absolute;
-    content: "";
-    right: 20px;
-    top: -10px;
-    width: 0;
-    height: 0;
-    border-style: solid;
-    border-width: 0 7px 9px 7px;
-    border-color: transparent transparent #e68288 transparent;
-}
+    /* Show message box on hover/focus of icon */
+    .multi-user-message-wrap:hover .multi-user-editing-alert-message,
+    .multi-user-message-wrap:focus .multi-user-editing-alert-message {
+        opacity: 1;
+        right: 0;
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+        -webkit-transition: opacity 0.3s ease-in-out 0s;
+        transition: opacity 0.3s ease-in-out 0s;
+    }
 
-.multi-user-editing-top-caret:before {
-    border-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) #fae8e9;
-    border-style: solid;
-    border-width: 0 6px 8px;
-    content: "";
-    height: 0;
-    left: -6px;
-    position: absolute;
-    top: 2px;
-    width: 0;
-}
+        /* Add a top caret pointer for message box */
+        .multi-user-editing-top-caret {
+            position: absolute;
+            content: "";
+            right: 20px;
+            top: -10px;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 0 7px 9px 7px;
+            border-color: transparent transparent #e68288 transparent;
+        }
 
-/* Styling of common box text */
-.multi-user-editing-label {
-    font-size: 14px;
-    line-height: 1.5;
-}
+        .multi-user-editing-top-caret:before {
+            border-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) #fae8e9;
+            border-style: solid;
+            border-width: 0 6px 8px;
+            content: "";
+            height: 0;
+            left: -6px;
+            position: absolute;
+            top: 2px;
+            width: 0;
+        }
 
-.multi-user-editing-alert-message .multi-user-list li {
-    display: list-item;
-}
+            /* Styling of common box text */
+            .multi-user-editing-label {
+                font-size: 14px;
+                line-height: 1.5;
+            }
+
+    .multi-user-editing-alert-message .multi-user-list li {
+        display: list-item; 
+    }
 
 /* OPTIONAL shake animation for CMS header icon,
 Usage: add a class="animated shake" on <img> on line 99 of multiUserEditing.js;

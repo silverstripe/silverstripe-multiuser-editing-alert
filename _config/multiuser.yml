@@ -4,13 +4,13 @@ After: framework/routes#coreroutes
 ---
 SilverStripe\Control\Director:
   rules:
-    'admin/editing//$Action/$ID': 'MultiUserEditing\MultiUserEditingController'
+    'multiuser/editing//$Action/$ID': 'Silverstripe\MultiUserEditing\MultiUserEditingController'
 SilverStripe\Admin\LeftAndMain:
   extra_requirements_javascript:
-    - 'multiuser-editing/js/multiUserEditing.js'
+    - 'vendor/silverstripe/multiuser-editing/js/multiUserEditing.js'
   extra_requirements_css:
-    - 'multiuser-editing/css/multiuserediting.min.css'
-MultiUserEditing\MultiUserEditingController:
+    - 'vendor/silverstripe/multiuser-editing/css/multiuserediting.min.css'
+Silverstripe\MultiUserEditing\MultiUserEditingController:
   userTimeoutInSeconds: 70
   updateIntervalSingleUser: 24
   updateIntervalMultiUser: 3
