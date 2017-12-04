@@ -1,13 +1,13 @@
 {
-    "name": "silverstripe/multiuser-editing-alert",
+    "name": "silverstripe/multiuser-editing",
     "type": "silverstripe-vendormodule",
     "description": "A module that indicates when people are editing the same page in the CMS",
     "license": "BSD-3-Clause",
     "keywords": ["silverstripe", "multi-user", "concurrent", "editing", "alert", "user", "content", "author"],
     "authors": [
         {
-        "name": "Julian Seidenberg",
-        "homepage": "http://www.deltaflow.com"
+            "name": "Julian Seidenberg",
+            "homepage": "http://www.deltaflow.com"
         }
     ],
     "require": {
@@ -16,7 +16,9 @@
     },
     "minimum-stability": "dev",
     "extra": {
-        "installer-name": "multiuser-editing",
+        "branch-alias": {
+            "dev-master": "2.x-dev"
+        },
         "expose": [
             "js",
             "css",
