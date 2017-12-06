@@ -6,7 +6,7 @@ Julian Seidenberg
 <julian (at) silverstripe (dot) com>
 
 ### Requirements
-SilverStripe 3.1 or newer
+SilverStripe 4.0 or newer
 
 ## Installation
 Run: `composer require silverstripe/multiuser-editing-alert`

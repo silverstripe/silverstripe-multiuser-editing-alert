@@ -1,0 +1,2 @@
+mappings:
+  MultiUserEditingController: Silverstripe\MultiUserEditing\MultiUserEditingController

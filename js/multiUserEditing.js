@@ -37,7 +37,7 @@ jQuery.entwine("multiUserEditing", function($) {
 			var pageID = this.find('#Form_EditForm_ID').val();
 			if (typeof(pageID) !== 'undefined' && pageID !== false && pageID !== 0 && pageID !== '0') {
 
-				$.getJSON('admin/editing/set/' + pageID, function (data) {
+				$.getJSON('multiuser/editing/set/' + pageID, function (data) {
 					self.updateUserLabels(data, pageID);
 					self.setUpdateTimeout(data);	//update every x seconds
 				});
@@ -49,7 +49,7 @@ jQuery.entwine("multiUserEditing", function($) {
 			var multipleEditors = false;
 			var cmsTree = $('.cms-tree');
 			//if you wish to place an icon left from CMS title use $('.cms-content-header-nav')
-			var cmsHead = $('.breadcrumbs-wrapper');
+			var cmsHead = $('.cms-content-header-tabs');
 			cmsTree.find('.user-label').remove();
 			cmsHead.find('.multi-user-message-wrap').hide();
 
@@ -90,7 +90,7 @@ jQuery.entwine("multiUserEditing", function($) {
 				usersBR += "</ul>";
 
 				var dotHTML = '<div class="user-label multi-user-icon" title="' + users +
-					'"><img height="5" width="5" ' + 'src="multiuser-editing/images/' + dot + '"></div>';
+					'"><img height="5" width="5" ' + 'src="resources/silverstripe/multiuser-editing/images/' + dot + '"></div>';
 					treeItem.find('.jstree-icon').first().after(dotHTML);
 
 				//append a highly visible message to the current page, if multiple editors are editing the same page
@@ -100,7 +100,7 @@ jQuery.entwine("multiUserEditing", function($) {
 						cmsHead.find('.multi-user-message-wrap').show();
 					} else {
 						cmsHead.prepend('<div class="multi-user-message-wrap">' +
-							'<img height="24" width="24" ' + 'src="multiuser-editing/images/' + dotHead + '">' +
+							'<img height="24" width="24" ' + 'src="resources/silverstripe/multiuser-editing/images/' + dotHead + '">' +
 							'<div class="multi-user-editing-alert-message message error">' +
 							'<span class="multi-user-editing-top-caret"></span>' +
 							'<div class="multi-user-editing-label"></div></div></div>');
