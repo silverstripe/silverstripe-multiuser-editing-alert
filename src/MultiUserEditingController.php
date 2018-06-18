@@ -13,7 +13,7 @@ class MultiUserEditingController extends Controller implements Flushable
 {
     private static $allowed_actions = [
         'set',
-        'get'
+        'get',
     ];
     
     private $user = null; //current user DataObject
@@ -27,7 +27,7 @@ class MultiUserEditingController extends Controller implements Flushable
         //check user login status
         $this->user = Security::getCurrentUser();
         if (!$this->user) {
-            user_error("User needs to be logged in access multi-user editing data", E_USER_ERROR);
+            return false;
         }
 
         //get the cache data
@@ -37,14 +37,14 @@ class MultiUserEditingController extends Controller implements Flushable
         $usersEditing = unserialize($this->editingCache->get('editing'));
 
         //create a new simple PHP object to store user editing data
-        if(!$usersEditing) {
+        if (!$usersEditing) {
             $usersEditing = array();
         }
 
         $timeout = Config::inst()->get(get_class($this), 'userTimeoutInSeconds');
 
         //remove any users that have timed out
-        foreach($usersEditing as $id => $user) {
+        foreach ($usersEditing as $id => $user) {
             if (!empty($user['lastEdited']) &&
                 strtotime($user['lastEdited']) < strtotime('-'.$timeout.' seconds')) {
                 //user has timed out after above number of minutes
@@ -63,6 +63,10 @@ class MultiUserEditingController extends Controller implements Flushable
 
     public function set($request)
     {
+        if (!$this->user) {
+            return false;
+        }
+
         $pageID = $request->param('ID');
 
         if (!intval($pageID)) {

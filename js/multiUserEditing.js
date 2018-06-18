@@ -38,8 +38,10 @@ jQuery.entwine("multiUserEditing", function($) {
 			if (typeof(pageID) !== 'undefined' && pageID !== false && pageID !== 0 && pageID !== '0') {
 
 				$.getJSON('multiuser/editing/set/' + pageID, function (data) {
-					self.updateUserLabels(data, pageID);
-					self.setUpdateTimeout(data);	//update every x seconds
+					if (data) {
+						self.updateUserLabels(data, pageID);
+						self.setUpdateTimeout(data);	//update every x seconds
+					}
 				});
 			}
 		},
