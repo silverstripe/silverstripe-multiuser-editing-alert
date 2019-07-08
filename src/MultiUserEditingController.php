@@ -94,7 +94,8 @@ class MultiUserEditingController extends Controller implements Flushable
     {
         $refresh = array(
             'updateIntervalMultiUser' => Config::inst()->get(get_class($this), 'updateIntervalMultiUser'),
-            'updateIntervalSingleUser' => Config::inst()->get(get_class($this), 'updateIntervalSingleUser')
+            'updateIntervalSingleUser' => Config::inst()->get(get_class($this), 'updateIntervalSingleUser'),
+            'resourcesDir' => (defined('RESOURCES_DIR') ? RESOURCES_DIR : 'resources'),
         );
         $this->usersEditing['update'] = $refresh;
 
