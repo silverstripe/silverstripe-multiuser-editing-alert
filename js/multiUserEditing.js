@@ -92,7 +92,7 @@ jQuery.entwine("multiUserEditing", function($) {
 				usersBR += "</ul>";
 
 				var dotHTML = '<div class="user-label multi-user-icon" title="' + users +
-					'"><img height="5" width="5" ' + 'src="resources/vendor/silverstripe/multiuser-editing-alert/images/' + dot + '"></div>';
+					'"><img height="5" width="5" ' + 'src="' + data.update.resourcesDir + '/vendor/silverstripe/multiuser-editing-alert/images/' + dot + '"></div>';
 					treeItem.find('.jstree-icon').first().after(dotHTML);
 
 				//append a highly visible message to the current page, if multiple editors are editing the same page
@@ -102,7 +102,7 @@ jQuery.entwine("multiUserEditing", function($) {
 						cmsHead.find('.multi-user-message-wrap').show();
 					} else {
 						cmsHead.prepend('<div class="multi-user-message-wrap">' +
-							'<img height="24" width="24" ' + 'src="resources/vendor/silverstripe/multiuser-editing-alert/images/' + dotHead + '">' +
+							'<img height="24" width="24" ' + 'src="' + data.update.resourcesDir + '/vendor/silverstripe/multiuser-editing-alert/images/' + dotHead + '">' +
 							'<div class="multi-user-editing-alert-message message error">' +
 							'<span class="multi-user-editing-top-caret"></span>' +
 							'<div class="multi-user-editing-label"></div></div></div>');
