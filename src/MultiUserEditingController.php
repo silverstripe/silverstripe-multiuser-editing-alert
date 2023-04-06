@@ -33,13 +33,7 @@ class MultiUserEditingController extends Controller implements Flushable
         //get the cache data
         $this->editingCache = Injector::inst()->get(CacheInterface::class . '.multiuserediting');
 
-
-        $usersEditing = unserialize($this->editingCache->get('editing'));
-
-        //create a new simple PHP object to store user editing data
-        if (!$usersEditing) {
-            $usersEditing = array();
-        }
+        $usersEditing = $this->editingCache->get('editing') ? unserialize($this->editingCache->get('editing')) : [];
 
         $timeout = Config::inst()->get(get_class($this), 'userTimeoutInSeconds');
 
@@ -73,9 +67,9 @@ class MultiUserEditingController extends Controller implements Flushable
             user_error("No page ID provided", E_USER_ERROR);
         }
 
-        $dataArray = array();
+        $dataArray = [];
         $dataArray['lastEdited'] = date("Y-m-d H:i:s"); //when this was last updated
-        $dataArray['abbreviatedName'] = $this->user->FirstName . ' ' . substr($this->user->Surname, 0, 1);
+        $dataArray['abbreviatedName'] = $this->user->FirstName . ' ' . substr($this->user->Surname ?: '', 0, 1);
         $dataArray['fullName'] = $this->user->FirstName . ' ' . $this->user->Surname;
         $dataArray['firstName'] = $this->user->FirstName;
         $dataArray['email'] = $this->user->Email;
@@ -92,11 +86,11 @@ class MultiUserEditingController extends Controller implements Flushable
 
     public function get()
     {
-        $refresh = array(
+        $refresh = [
             'updateIntervalMultiUser' => Config::inst()->get(get_class($this), 'updateIntervalMultiUser'),
             'updateIntervalSingleUser' => Config::inst()->get(get_class($this), 'updateIntervalSingleUser'),
             'resourcesDir' => (defined('RESOURCES_DIR') ? RESOURCES_DIR : 'resources'),
-        );
+        ];
         $this->usersEditing['update'] = $refresh;
 
         return json_encode($this->usersEditing);
