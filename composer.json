@@ -11,8 +11,8 @@
         }
     ],
     "require": {
-        "silverstripe/cms": "^4.0",
-        "silverstripe/vendor-plugin": "^1.0"
+        "silverstripe/cms": "^4.0|^5.0",
+        "silverstripe/vendor-plugin": "^1.0|^2.0"
     },
     "minimum-stability": "dev",
     "extra": {

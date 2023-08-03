@@ -40,7 +40,7 @@ class MultiUserEditingController extends Controller implements Flushable
         //remove any users that have timed out
         foreach ($usersEditing as $id => $user) {
             if (!empty($user['lastEdited']) &&
-                strtotime($user['lastEdited']) < strtotime('-'.$timeout.' seconds')) {
+                strtotime($user['lastEdited']) < strtotime('-' . $timeout.' seconds')) {
                 //user has timed out after above number of minutes
                 unset($usersEditing[$id]);
             }
@@ -89,7 +89,7 @@ class MultiUserEditingController extends Controller implements Flushable
         $refresh = [
             'updateIntervalMultiUser' => Config::inst()->get(get_class($this), 'updateIntervalMultiUser'),
             'updateIntervalSingleUser' => Config::inst()->get(get_class($this), 'updateIntervalSingleUser'),
-            'resourcesDir' => (defined('RESOURCES_DIR') ? RESOURCES_DIR : 'resources'),
+            'resourcesDir' => (defined('RESOURCES_DIR') ? RESOURCES_DIR : '_resources'),
         ];
         $this->usersEditing['update'] = $refresh;
 
