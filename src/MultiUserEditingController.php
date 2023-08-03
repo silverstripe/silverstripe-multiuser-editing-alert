@@ -34,7 +34,7 @@ class MultiUserEditingController extends Controller implements Flushable
         $this->editingCache = Injector::inst()->get(CacheInterface::class . '.multiuserediting');
 
 
-        $usersEditing = unserialize($this->editingCache->get('editing'));
+        $usersEditing = unserialize($this->editingCache->get('editing') ?? '');
 
         //create a new simple PHP object to store user editing data
         if (!$usersEditing) {
@@ -46,7 +46,7 @@ class MultiUserEditingController extends Controller implements Flushable
         //remove any users that have timed out
         foreach ($usersEditing as $id => $user) {
             if (!empty($user['lastEdited']) &&
-                strtotime($user['lastEdited']) < strtotime('-'.$timeout.' seconds')) {
+                strtotime($user['lastEdited']) < strtotime('-' . $timeout.' seconds')) {
                 //user has timed out after above number of minutes
                 unset($usersEditing[$id]);
             }
@@ -75,7 +75,7 @@ class MultiUserEditingController extends Controller implements Flushable
 
         $dataArray = array();
         $dataArray['lastEdited'] = date("Y-m-d H:i:s"); //when this was last updated
-        $dataArray['abbreviatedName'] = $this->user->FirstName . ' ' . substr($this->user->Surname, 0, 1);
+        $dataArray['abbreviatedName'] = $this->user->FirstName . ' ' . substr($this->user->Surname ?? '', 0, 1);
         $dataArray['fullName'] = $this->user->FirstName . ' ' . $this->user->Surname;
         $dataArray['firstName'] = $this->user->FirstName;
         $dataArray['email'] = $this->user->Email;
@@ -95,7 +95,7 @@ class MultiUserEditingController extends Controller implements Flushable
         $refresh = array(
             'updateIntervalMultiUser' => Config::inst()->get(get_class($this), 'updateIntervalMultiUser'),
             'updateIntervalSingleUser' => Config::inst()->get(get_class($this), 'updateIntervalSingleUser'),
-            'resourcesDir' => (defined('RESOURCES_DIR') ? RESOURCES_DIR : 'resources'),
+            'resourcesDir' => (defined('RESOURCES_DIR') ? RESOURCES_DIR : '_resources'),
         );
         $this->usersEditing['update'] = $refresh;
 
