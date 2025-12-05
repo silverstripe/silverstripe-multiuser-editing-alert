@@ -1,12 +1,12 @@
 # Multi-User Editing Alert
-Alerts users in the SilverStripe CMS when multiple people are editing the same page.
+Alerts users in the Silverstripe CMS when multiple people are editing the same page.
 
 ### Maintainer Contact
 Julian Seidenberg
 <julian (at) silverstripe (dot) com>
 
 ### Requirements
-SilverStripe 4.0 or newer
+Silverstripe 4.0 or newer
 
 ## Installation
 Run: `composer require silverstripe/multiuser-editing-alert`
@@ -17,7 +17,7 @@ The module is automatically enabled after flush=all.
 Install the module and blue dots appear next to pages in the site tree to indicate where CMS authors are editing.
 If multiple authors edit the same page a red dot and large warning messages appears on the page.
 
-The list of people editing the page is stored in the SS_Cache file (DynamoDB in SilverStripe Platform or Tmp), 
+The list of people editing the page is stored in the SS_Cache file (DynamoDB in Silverstripe Platform or Tmp), 
 and running a flush clears the list of editors.
  
 The module polls the server every 3 seconds when there are multiple users editing, but saves server cycles by polling 
